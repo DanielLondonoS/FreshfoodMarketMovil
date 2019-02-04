@@ -1,0 +1,130 @@
+page-login {
+    .banner-imagen{
+        background: rgb(153, 51, 153) !important; 
+        padding: 1em;
+        img{
+            width: 50%;
+        }
+    }
+    .contenedor-formulario{
+        width: 100%;
+        // border: 1px solid;
+        display: flex;
+        margin-top: 3em;
+    }
+    .formulario{
+        width: 100%;
+        margin: auto;
+        // border: 1px solid;
+    }
+
+    .formulario-grupo{
+        margin:10px;
+        margin-bottom: 4em;
+        label{
+            font-weight: bold;
+        }
+    }    
+
+    .formulario-entrada{
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1.5rem;
+        height: 4rem;
+        line-height: 1.5;
+        color: white;
+        background-color: rgba(153, 51, 153,0.65) !important;  
+        background-clip: padding-box;
+        border: 1px solid rgb(206, 212, 218) !important;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin: auto;
+    }
+
+    .contenedor-boton{
+        display: flex;
+    }
+    .boton-continuar{
+        // background-image: url(../../assets/imgs/pawprint.png) !important;
+        // background-size: 150px;
+        // width: 150px;
+        // height: 150px;
+        // color: white;
+        margin: auto;
+        background: rgb(153, 51, 153) !important;
+        color: white !important;
+        border: 1px solid rgb(153, 51, 153) !important;
+    }
+
+    .contenedor-registro{
+        display: grid;
+        text-align: right;
+        margin: 2em 10px;
+    }
+
+    // ANDROID 
+//     .md .banner-imagen{
+//         background: #9e4f9b !important; 
+//         padding: 1em;
+//         img{
+//             width: 50%;
+//         }
+//     }
+//     .md .contenedor-formulario{
+//         width: 100%;
+//         // border: 1px solid;
+//         display: flex;
+//         margin-top: 3em;
+//     }
+//     .md .formulario{
+//         width: 100%;
+//         margin: auto;
+//         // border: 1px solid;
+//     }
+
+//    .md  .formulario-grupo{
+//         margin:10px;
+//         margin-bottom: 4em;
+//         label{
+//             font-weight: bold;
+//         }
+//     }    
+
+//     .md .formulario-entrada{
+//         display: block;
+//         width: 100%;
+//         padding: .375rem .75rem;
+//         font-size: 1.5rem;
+//         height: 4rem;
+//         line-height: 1.5;
+//         color: white;
+//         background-color: #9e4f9bd9 !important; 
+//         background-clip: padding-box;
+//         border: 1px solid #ced4da !important;
+//         border-radius: .25rem;
+//         transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+//         margin: auto;
+//     }
+
+//     .md .contenedor-boton{
+//         display: flex;
+//     }
+//     .md .boton-continuar{
+//         // background-image: url(../../assets/imgs/pawprint.png) !important;
+//         // background-size: 150px;
+//         // width: 150px;
+//         // height: 150px;
+//         // color: white;
+//         margin: auto;
+//         background: #9e4f9bd9 !important;
+//         color: white !important;
+//         border: 1px solid #9e4f9bd9 !important;
+//     }
+
+//     .md .contenedor-registro{
+//         display: grid;
+//         text-align: right;
+//         margin: 2em 10px;
+//     }
+}

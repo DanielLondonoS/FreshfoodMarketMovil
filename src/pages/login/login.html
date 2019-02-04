@@ -1,0 +1,50 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="banner-imagen">
+    <img src="../../assets/imgs/logo-blanco.png" alt="">
+  </div>
+  <div class="contenedor-formulario" >
+      <form [formGroup]="formLogin" class="formulario">
+        <div>
+          <div class="formulario-grupo">
+            <label for="">Correo</label>
+            <input class="formulario-entrada" type="email" formControlName="correo"  [(ngModel)]="cliente.correo">
+          </div>
+
+            <div class="formulario-grupo">
+              <label for="">Contraseña</label>
+              <input class="formulario-entrada" formControlName="contrasena" [(ngModel)]="cliente.contrasena" type="password">
+            </div>
+
+        </div>
+
+        <div class="contenedor-boton">
+            <button ion-button outline class="boton-continuar" [disabled]="!formLogin.valid" (click)="LoginUsuario()">Continuar</button>
+        </div>
+          
+      </form>
+        
+        
+
+  </div>
+  <div class="contenedor-registro">
+      <a style="font-size: 1.2em; color:rgb(158, 79, 155)" (click)="goToPage(0)">Recuperar contraseña</a>
+      <a style="font-size: 1.2em; color:rgb(158, 79, 155)" (click)="goToPage(1)">Registrate</a>
+  </div>
+
+  
+</ion-content>

@@ -1,0 +1,53 @@
+<!--
+  Generated template for the RegistroPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+    <div class="contenedor-formulario">
+        <form [formGroup]="formRegistro" class="formulario">
+          <div>
+            <div class="formulario-grupo">
+              <label for="">Nombre</label>
+              <input class="formulario-entrada" formControlName="nombre" [(ngModel)]="cliente.nombre" type="text">
+            </div>
+  
+            <div class="formulario-grupo">
+              <label for="">Correo</label>
+              <input class="formulario-entrada" formControlName="correo" [(ngModel)]="cliente.correo" type="text">
+            </div>
+
+            <div class="formulario-grupo">
+              <label for="">Dirección</label>
+              <input class="formulario-entrada" formControlName="direccion" [(ngModel)]="cliente.direccion" type="text">
+            </div>
+
+            <div class="formulario-grupo">
+              <label for="">Telefono movil</label>
+              <input class="formulario-entrada" formControlName="telefono" [(ngModel)]="cliente.telefono" type="text">
+            </div>
+            <div class="formulario-grupo">
+              <label for="">Contraseña</label>
+              <input class="formulario-entrada" formControlName="contrasena" [(ngModel)]="cliente.contrasena" type="password">
+            </div>
+
+          </div>
+
+            <div class="contenedor-boton">
+                <button ion-button outline class="boton-continuar" [disabled]="!formRegistro.valid" (click)="GuardarInformacion()">Continuar</button>
+            </div>
+            
+          </form>
+    </div>
+  
+</ion-content>

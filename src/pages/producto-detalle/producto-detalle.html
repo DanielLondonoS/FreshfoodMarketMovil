@@ -1,0 +1,67 @@
+<!--
+  Generated template for the ProductoDetallePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{producto.nombre}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div padding>
+    <ion-slides pager>
+
+      <ion-slide style="background-color: rgb(158, 79, 155)">
+        <img *ngIf="producto.imagen != null" [src]="producto.imagen" alt="">
+        <img *ngIf="producto.imagen == null" src="../../assets/imgs/nofoto.png" alt="">
+      </ion-slide>
+    
+    </ion-slides>
+  </div>
+  <div padding style="height:100%">
+    <div style="display: flex; margin: 5px 0px;">
+      <h3>{{producto.nombre}}</h3>
+    </div>
+    <div style="display: flex; margin: 5px 0px;">
+      <!-- <h4 style="margin: 0px;padding: 0px;">Precio:</h4> -->
+      <p style="white-space: normal;text-justify: distribute; margin: 0px;font-size: 1.3em; font-weight: bold; color: red;">{{producto.precioVenta | currency}}</p>
+    </div>
+    <!-- <div style="display: block; margin: 5px 0px;">
+      <h4 style="margin: 0px;padding: 0px;">Presentación:</h4>
+      <p style="white-space: normal;text-justify: distribute; margin: 0px; margin-bottom: 8px;font-size: 1.2em;">{{producto.presentacion}}</p>
+    </div> -->
+    <div style="display: block; margin: 5px 0px;">
+      <h4 style="margin: 0px;padding: 0px;">Descripción:</h4>
+      <p style="white-space: normal;text-justify: distribute; margin: 0px; margin-bottom: 8px;font-size: 1.2em;">{{producto.descripcion}}</p>
+    </div>
+  </div>  
+  
+</ion-content>
+
+<ion-footer>
+  <div style="display: block; margin: 0px 0px; position: sticky; background: white; left: 0; bottom: 0; border: 1px solid rgb(158, 79, 155); width: 100%;">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-5>
+          <div style="display: flex">
+            <div class="boton-cantidades">
+              <ion-icon  item-right class="plus-minus" name="remove-circle" color="danger"(click)="onCantidad('dec')"></ion-icon>
+              <ion-input style="text-align: center;width:80px" min="1" type="number" name="cantidad" [(ngModel)]="cantidad"></ion-input>        
+              <ion-icon  item-right class="plus-minus" name="add-circle" color="secondary" (click)="onCantidad('inc')"></ion-icon>  
+            </div>
+          </div>
+          
+        </ion-col>
+        <ion-col col-7 style="margin: 0px auto; display: flex;">
+          <button ion-button outline class="boton-continuar" (click)="addPedido()">Agregar al carrito</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-footer>

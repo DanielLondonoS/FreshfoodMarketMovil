@@ -1,0 +1,131 @@
+page-pedidos {
+    .promociones-panel{
+        display: flex;
+        padding: 0.5em;
+        h3{
+            text-align: left;
+            text-align: left;
+            margin: auto;
+        }
+        a{
+            text-align: right;
+            width: 100%;
+            margin: auto;
+        }
+    }
+    
+    .contenedor-imagen{
+        display: flex;
+        padding: 2em;
+        img{
+            margin: auto auto;
+        }
+    }
+    .contenedor-formulario{
+        width: 100%;
+        // border: 1px solid;
+        display: flex;
+        margin-top: 1em;
+    }
+    .formulario{
+        width: 100%;
+        margin: auto;
+        // border: 1px solid;
+    }
+
+    .formulario-grupo{
+        margin:10px;
+        margin-bottom: 2em;
+        label{
+            font-weight: bold;
+        }
+    }    
+
+    .formulario-entrada{
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1.5rem;
+        height: 4rem;
+        line-height: 1.5;
+        color: white;
+        background-color: rgba(153, 51, 153,.85);;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        margin: auto;
+    }
+
+    .contenedor-boton{
+        display: flex;
+    }
+    .boton-continuar{
+        // background-image: url(../../assets/imgs/pawprint.png) !important;
+        // background-size: 150px;
+        // width: 150px;
+        // height: 150px;
+        // color: white;
+        margin: auto;
+        background: rgb(153, 51, 153);
+        color: white;
+        border: 1px solid rgb(153, 51, 153);
+    }
+
+    .porcentaje-dto{
+        position: absolute;
+        top: -1%;
+        border: 1px solid;
+        border-radius: 4px;
+        left: 1%;
+        padding: 4px;
+        margin: 4px;
+        background: red;
+        color: white;
+    }
+
+    .porcentaje-dto-grid{
+        position: absolute;
+        top: 0%;
+        border: 1px solid;
+        border-radius: 4px;
+        left: 0%;
+        padding: 4px;
+        margin: 4px;
+        background: red;
+        color: white;
+    }
+    .boton-cantidades{
+        display: flex;
+        border: 1px solid rgb(153, 51, 153);
+        border-radius: 5px;
+        width: 82px;
+        margin: 0;
+        height: 39px;
+        padding: 0 3px;
+        ion-icon{
+            margin: auto 0;
+            font-size: 1.5em;
+        }
+    }
+
+    .boton-cantidades-list{
+        display: flex;
+        border: 1px solid rgb(153, 51, 153);
+        border-radius: 5px;
+        width: 82px;
+        height: 39px;
+        margin:auto;
+        padding: 0 3px;
+        ion-icon{
+            margin: auto 0;
+            font-size: 1.5em;
+        }
+    }
+    .text-input{
+        text-align: center;
+        color:  rgb(153, 51, 153);
+    }
+
+
+}

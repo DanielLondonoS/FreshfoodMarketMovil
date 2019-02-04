@@ -1,0 +1,25 @@
+
+<ion-header>
+
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Freshfood Market</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="goToCart()">
+          <ion-icon name="cart" style="color:white"></ion-icon>
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <!-- <div style="height: 100%; display: flex;">
+      <pedidos [usuario]="usuario" style="margin: auto auto;"></pedidos>
+  </div> -->
+  <publicidad></publicidad>
+  <productos-lista (ProductsClick)="onProductClick($event)" [ListaProductos]="ProductosLista"></productos-lista>
+</ion-content>
+
+

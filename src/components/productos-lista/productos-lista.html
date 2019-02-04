@@ -1,0 +1,43 @@
+<ion-grid >
+  <ion-row>
+    <ion-col  col-6 *ngFor="let products of _listaProductos;let i = index;">
+      <div style="border: 1px solid rgba(158, 79, 155, 0.322);">
+        <div  (click)="onProductsClick(products)">
+          <div style="display: flex">
+            <!-- <img *ngIf="products.imagen != null" [src]="product.imagen" [alt]="products.nombre" style="height: 150px;margin: auto;">
+            <img *ngIf="products.imagen == null" src="../../assets/imgs/nofoto.png" [alt]="products.nombre" style="height: 150px;margin: auto;"> -->
+            <img *ngIf="products.imagen != null" [src]="products.imagen" [alt]="products.nombre" style="height: 150px;margin: auto;">
+            <img *ngIf="products.imagen == null" src="../../assets/imgs/nofoto.png" [alt]="products.Nombre" style="height: 150px;margin: auto;">
+          </div>   
+          <div class="biography">
+            {{products.nombre}}
+          </div>     
+          <!-- <div style="height: auto; margin: 6px">
+            <p style="margin:4px 0px;"><strong>{{products.nombre}}</strong></p>
+          </div>           -->
+          <!-- <p><strong>{{products.price | currency}}</strong></p> -->
+          <div style="height: auto; margin: 6px" > <!--*ngIf="products.old_price > 0 && products.old_price != null"-->
+            <p style="margin:4px 0px;"><strong style="color:red;">{{products.precioVenta | currency}}</strong> {{products.presentacion}}</p>   <!--<del>{{products.old_price | currency}}</del>-->
+          </div>
+          <!-- <div style="height: 20px;" *ngIf="products.old_price == 0 || products.old_price == null">
+            <p >{{products.price | currency}}</p> 
+          </div>
+          <div style="height: 20px;" *ngIf="products.porc_dcto != undefined && products.porc_dcto != 0">
+            <p  class="porcentaje-dto-grid">{{products.porc_dcto | number}}%</p>
+          </div>           -->       
+            
+        </div>
+        <div style="display: flex;margin-bottom: 5px;"  >
+          <button *ngIf="products['disable_buy_button'] == false" style="color: rgb(153, 51, 153)!important; background-color: rgba(153, 51, 153,0.65) !important; border: 1px solid rgb(153, 51, 153) !important; margin: auto;" (click)="agregarCarrito(i)" ion-button >Pedir</button>
+          <div class="boton-cantidades" *ngIf="products['disable_buy_button'] == true">
+            <ion-icon  item-right class="plus-minus" name="remove-circle" color="danger" (click)="cantidad('dec',product,i)"></ion-icon>
+            <ion-input style="text-align: center;width:80px" min="1" type="number" name="cantidad" (blur)="quantityInput(products,i)" [(ngModel)]="products.cantidad"></ion-input>        
+            <ion-icon  item-right class="plus-minus" name="add-circle" color="secondary" (click)="cantidad('inc',product,i)"></ion-icon>  
+          </div>
+        </div>
+      </div>
+      
+      
+    </ion-col>
+  </ion-row>    
+</ion-grid>

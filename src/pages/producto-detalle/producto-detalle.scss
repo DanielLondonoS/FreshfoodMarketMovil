@@ -1,0 +1,33 @@
+page-producto-detalle {
+    .boton-continuar{
+        // background-image: url(../../assets/imgs/pawprint.png) !important;
+        // background-size: 150px;
+        // width: 150px;
+        // height: 150px;
+        // color: white;
+        margin: auto;
+        background: rgba(158, 79, 155, 0.851) !important;
+        color: white !important;
+        border: 1px solid rgba(158, 79, 155, 0.851) !important;
+    }
+
+    .boton-cantidades{
+        display: flex;
+        border: 1px solid rgb(153, 51, 153);
+        border-radius: 5px;
+        margin: auto;
+        height: 39px;
+        padding: 0 3px;
+        ion-icon{
+            margin: auto 0;
+            font-size: 1.5em;
+        }
+    }
+
+    .text-input-md {
+        margin: 13px 8px;
+        padding: 0;
+        width: calc(100% - 8px - 8px);
+        text-align: center;
+    }
+}

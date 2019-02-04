@@ -1,0 +1,11 @@
+<!-- <div class="promociones-panel">
+    <h3>Promociones</h3>
+    <a>Ver todas</a>
+  </div> -->
+  <ion-slides *ngIf="listPromotions.length > 0" autoplay="5000" loop="true" speed="3000" style="height: auto !important;width: auto !important;">
+    <ion-slide *ngFor="let promotion of listPromotions" (click)="onPromotionsClick(promotion)">
+      <ion-thumbnail item-start>
+        <img [src]="promotion.rutaImagen" [alt]="promotion.nombre" style="margin:0 auto;">
+      </ion-thumbnail> 
+    </ion-slide>
+  </ion-slides>
