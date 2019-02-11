@@ -39,9 +39,10 @@ export class ProductoDetallePage {
     pedidoDetalle.id = "";
     pedidoDetalle.idPedido = "";
     pedidoDetalle.idProducto = this.producto.id;
-    pedidoDetalle.cantidad = this.cantidad;
+    let cant:any = this.cantidad
+    pedidoDetalle.cantidad = parseInt(cant);
     pedidoDetalle.valorUnitario = this.producto.precioVenta;
-    pedidoDetalle.valorTotal = this.producto.precioVenta * this.cantidad;
+    pedidoDetalle.valorTotal = this.producto.precioVenta * cant;
     this.utilidades.AgregarAlcarrito(pedidoDetalle,'input');
     this.presentToast('Producto agregado.')
 

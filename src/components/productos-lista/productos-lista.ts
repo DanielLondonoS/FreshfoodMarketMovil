@@ -130,15 +130,16 @@ export class ProductosListaComponent implements OnInit{
   cantidad(accion :string,product:ProductoModel,index:number){
     console.log(accion,product,index)
     let pedidoDetalle : PedidoDetalleModel = new PedidoDetalleModel();
+    let cantidad :any = this._listaProductos[index]['cantidad'];
     switch(accion){
       case 'dec':
         if(this._listaProductos[index]['cantidad'] > 0){
-          this._listaProductos[index]['cantidad'] = this._listaProductos[index]['cantidad'] - 1;     
+          this._listaProductos[index]['cantidad'] = parseInt(cantidad) - 1;     
           pedidoDetalle.cantidad = -1;     
         }        
       break;
       case 'inc':
-        this._listaProductos[index]['cantidad'] = this._listaProductos[index]['cantidad'] + 1;
+        this._listaProductos[index]['cantidad'] = parseInt(cantidad) + 1;
         pedidoDetalle.cantidad = 1;
       break;
     }
@@ -166,15 +167,15 @@ export class ProductosListaComponent implements OnInit{
   quantityInput(product:ProductoModel,index:number){
     console.log(product,index)
     let pedidoDetalle : PedidoDetalleModel = new PedidoDetalleModel();
-    
-    pedidoDetalle.cantidad = this._listaProductos[index]['cantidad'];     
+    let cantidad :any = this._listaProductos[index]['cantidad']
+    pedidoDetalle.cantidad = parseInt(cantidad); 
     
     pedidoDetalle.id = "";
     pedidoDetalle.idPedido = "";
     pedidoDetalle.idProducto = this._listaProductos[index]['id'];
     
     pedidoDetalle.valorUnitario = this._listaProductos[index]['precioVenta'];
-    pedidoDetalle.valorTotal = this._listaProductos[index]['precioVenta'] * this._listaProductos[index]['cantidad'];
+    pedidoDetalle.valorTotal = this._listaProductos[index]['precioVenta'] * parseInt(cantidad);
     this.utilidades.AgregarAlcarrito(pedidoDetalle,'input');
     this.presentToast("Agregado al carrito.");
   }

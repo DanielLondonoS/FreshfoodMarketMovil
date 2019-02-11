@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PublicacionesProvider } from '../../providers/publicaciones/publicaciones';
 import { UtilitiesProvider } from '../../providers/Utilities/Utilities';
 import { ViewChild } from '@angular/core';
@@ -14,22 +14,24 @@ import { Slides } from 'ionic-angular';
   selector: 'publicidad',
   templateUrl: 'publicidad.html'
 })
-export class PublicidadComponent {
-  @Input()
-  set listSlides(name: any[]) {
-    if (name.length < 0){
-      this.listPromotions = name;
-    }
+export class PublicidadComponent implements OnInit{
+  // @Input()
+  // set listSlides(name: any[]) {
+  //   if (name.length < 0){
+  //     this.listPromotions = name;
+  //   }
     
-  }
+  // }
  
-  get listSlides(): any[] { return this.listPromotions; }
+  // get listSlides(): any[] { return this.listPromotions; }
 
   @ViewChild(Slides) slides: Slides;
-  listPromotions:any[] = [];
-  // [{
-  //   estado: "",fechaPublicacion: "",id: "",idProveedor: "",nombre: "",rutaImagen: ""
-  // }]
+  listPromotions:any[] =
+  [
+    { estado: "Activo",fechaPublicacion: new Date(),id: "",idProveedor: "",nombre: "promosion 1",rutaImagen: "../../assets/imgs/publicidad/publicidad_slide1.png" },
+    { estado: "Activo",fechaPublicacion: new Date(),id: "",idProveedor: "",nombre: "promosion 2",rutaImagen: "../../assets/imgs/publicidad/publicidad_slide2.png" },
+    { estado: "Activo",fechaPublicacion: new Date(),id: "",idProveedor: "",nombre: "promosion 3",rutaImagen: "../../assets/imgs/publicidad/publicidad_slide3.png" },
+  ]
     // {image:"../../assets/imgs/publicidad/publicidad_slide1.png",name:"promosion 1"},
     // {image:"../../assets/imgs/publicidad/publicidad_slide2.png", name:"promosion 2"},
     // {image:"../../assets/imgs/publicidad/publicidad_slide3.png",name:"promosion 3"}
@@ -39,8 +41,8 @@ export class PublicidadComponent {
     
   }
 
-  ngAfterViewInit() {
-    // this.cargarPublicidad();
+  ngOnInit() {
+    //this.cargarPublicidad();
   }
 
   cargarPublicidad(){
@@ -55,6 +57,8 @@ export class PublicidadComponent {
         // this.slides.startAutoplay();
         console.log(this.listPromotions)
       }
+    },error => {
+      console.log(error)
     })
   }
 

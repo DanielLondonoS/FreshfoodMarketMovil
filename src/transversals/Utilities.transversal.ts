@@ -18,8 +18,10 @@ export class UtilitiesTransversal{
                 let index = datosLocales.indexOf(busqueda);
                 if(type == "input"){
                     datosLocales[index].cantidad = Detalle.cantidad;
+                    datosLocales[index].valorTotal = Detalle.valorTotal;
                 }else{
                     datosLocales[index].cantidad = busqueda.cantidad + (Detalle.cantidad);
+                    datosLocales[index].valorTotal = busqueda.valorUnitario * (busqueda.cantidad);
                 }                
             }else{
                 datosLocales.push(Detalle)

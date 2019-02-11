@@ -4,7 +4,7 @@ export const URL:any = {
 }
 
 export const VARIABLES: any = {
-    ModoEjecucion:'Produccion'
+    ModoEjecucion:'Desarrollo'
 }
 
 //rgba(153, 51, 153,0.65)

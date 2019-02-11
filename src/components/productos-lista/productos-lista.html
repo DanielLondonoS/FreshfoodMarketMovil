@@ -30,9 +30,9 @@
         <div style="display: flex;margin-bottom: 5px;"  >
           <button *ngIf="products['disable_buy_button'] == false" style="color: rgb(153, 51, 153)!important; background-color: rgba(153, 51, 153,0.65) !important; border: 1px solid rgb(153, 51, 153) !important; margin: auto;" (click)="agregarCarrito(i)" ion-button >Pedir</button>
           <div class="boton-cantidades" *ngIf="products['disable_buy_button'] == true">
-            <ion-icon  item-right class="plus-minus" name="remove-circle" color="danger" (click)="cantidad('dec',product,i)"></ion-icon>
+            <ion-icon  item-right class="plus-minus" name="remove-circle" color="danger" (click)="cantidad('dec',products,i)"></ion-icon>
             <ion-input style="text-align: center;width:80px" min="1" type="number" name="cantidad" (blur)="quantityInput(products,i)" [(ngModel)]="products.cantidad"></ion-input>        
-            <ion-icon  item-right class="plus-minus" name="add-circle" color="secondary" (click)="cantidad('inc',product,i)"></ion-icon>  
+            <ion-icon  item-right class="plus-minus" name="add-circle" color="secondary" (click)="cantidad('inc',products,i)"></ion-icon>  
           </div>
         </div>
       </div>

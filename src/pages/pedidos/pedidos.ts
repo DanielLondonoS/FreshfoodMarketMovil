@@ -35,7 +35,7 @@ export class PedidosPage {
   utilidades = new UtilitiesTransversal();
   totalPedido:number = 0;
   mensaje = "";
-  listPromotions:any[] = [];
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public fb:FormBuilder,public pedidosProvider:PedidosProvider,
     public productosProvider:ProductosProvider, public toastCtrl: ToastController,
     private utilitiesProvider:UtilitiesProvider,private publicacionesProvider:PublicacionesProvider) {
@@ -51,7 +51,7 @@ export class PedidosPage {
   }
 
   ionViewWillEnter() {
-    this.cargarPublicidad();    
+    this.cargarDatosCarrito();    
   }
 
   cargarDatosCarrito(){
@@ -64,21 +64,21 @@ export class PedidosPage {
     }
   }
 
-  cargarPublicidad(){
-    this.utilitiesProvider.openLoading()
-    this.publicacionesProvider.listaPublicaciones()
-    .subscribe(res => {
-      this.utilitiesProvider.closeLoading();
-      if(res['estado']){
-        this.listPromotions = res['publicaciones']
-        // this.slides._autoplaying = true
-        // this.slides.autoplay = 5000;
-        // this.slides.startAutoplay();
-        console.log(this.listPromotions)
-        this.cargarDatosCarrito();
-      }
-    })
-  }
+  // cargarPublicidad(){
+  //   this.utilitiesProvider.openLoading()
+  //   this.publicacionesProvider.listaPublicaciones()
+  //   .subscribe(res => {
+  //     this.utilitiesProvider.closeLoading();
+  //     if(res['estado']){
+  //       this.listPromotions = res['publicaciones']
+  //       // this.slides._autoplaying = true
+  //       // this.slides.autoplay = 5000;
+  //       // this.slides.startAutoplay();
+  //       console.log(this.listPromotions)
+  //       this.cargarDatosCarrito();
+  //     }
+  //   })
+  // }
 
   ArmarListaCarrito(carritoActual:PedidoDetalleModel[]){
     if(VARIABLES.ModoEjecucion == 'Desarrollo'){
@@ -144,7 +144,9 @@ export class PedidosPage {
 
   HacerPedido(){
     if(VARIABLES.ModoEjecucion == 'Desarrollo'){
-
+      this.presentToast("Pedido exitoso");
+      this.utilidades.VaciarCarrito();
+      this.navCtrl.setRoot(HomePage)
     }else{
       let pedido_detalle:PedidoDetalleModel[] = [];
       let pedido:PedidoModel = new PedidoModel();
@@ -202,8 +204,8 @@ export class PedidosPage {
     pedidoDetalle.id = "";
     pedidoDetalle.idPedido = "";
     pedidoDetalle.idProducto = this.ListaCarrito[index]['producto']['id'];    
-    pedidoDetalle.valorUnitario = this.ListaCarrito[index]['producto']['precioVenta'];
-    pedidoDetalle.valorTotal = this.ListaCarrito[index]['producto']['precioVenta'] * this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']; 
+    pedidoDetalle.valorUnitario = parseInt(this.ListaCarrito[index]['producto']['precioVenta']);
+    pedidoDetalle.valorTotal = parseInt(this.ListaCarrito[index]['producto']['precioVenta']) * parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']); 
     this.utilidades.AgregarAlcarrito(pedidoDetalle,'input');
     this.presentToast("Agregado al carrito.");
     let listaCarrito = this.utilidades.ObtenerCarritoDetalle();
@@ -217,13 +219,13 @@ export class PedidosPage {
     switch(accion){
       case 'dec':
         if(this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] > 0){
-          this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] = this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] - 1;     
+          this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] = parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']) - 1;     
           pedidoDetalle.cantidad = -1; 
           // this.totalPedido -= this.ListaCarrito[index]['producto']['precioVenta']  
         }        
       break;
       case 'inc':
-        this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] = this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] + 1;
+        this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad'] = parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']) + 1;
         pedidoDetalle.cantidad = 1;
         // this.totalPedido += this.ListaCarrito[index]['producto']['precioVenta']
       break;
@@ -231,8 +233,8 @@ export class PedidosPage {
     pedidoDetalle.id = "";
     pedidoDetalle.idPedido = "";
     pedidoDetalle.idProducto = this.ListaCarrito[index]['producto']['id'];    
-    pedidoDetalle.valorUnitario = this.ListaCarrito[index]['producto']['pedido_detalle']['precioVenta'];
-    pedidoDetalle.valorTotal = this.ListaCarrito[index]['producto']['pedido_detalle']['precioVenta'] * this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']; 
+    pedidoDetalle.valorUnitario = parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['valorUnitario']);
+    pedidoDetalle.valorTotal = parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['valorUnitario']) * parseInt(this.ListaCarrito[index]['producto']['pedido_detalle']['cantidad']); 
     this.utilidades.AgregarAlcarrito(pedidoDetalle,'step');
     let listaCarrito = this.utilidades.ObtenerCarritoDetalle();
     this.ArmarListaCarrito(listaCarrito);

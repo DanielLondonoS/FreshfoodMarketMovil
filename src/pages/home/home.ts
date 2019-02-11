@@ -34,7 +34,7 @@ export class HomePage {
     this.usuario = this.navParm.get('usuario');
   }
   
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     this.listaDeProductos();
   }
 
@@ -69,7 +69,6 @@ export class HomePage {
           })
           this.ProductosLista = lista;
           console.log(this.ProductosLista)
-          this.cargarPublicidad();
         }
         
       },error=>{
@@ -78,22 +77,6 @@ export class HomePage {
     }
     
 
-  }
-
-  cargarPublicidad(){
-    this.utilitiesProvider.openLoading()
-    this.publicacionesProvider.listaPublicaciones()
-    .subscribe(res => {
-      this.utilitiesProvider.closeLoading();
-      if(res['estado']){
-        this.listPromotions = res['publicaciones']
-        // this.slides._autoplaying = true
-        // this.slides.autoplay = 5000;
-        // this.slides.startAutoplay();
-        console.log(this.listPromotions)
-        
-      }
-    })
   }
 
   onProductClick(product:ProductoModel){
