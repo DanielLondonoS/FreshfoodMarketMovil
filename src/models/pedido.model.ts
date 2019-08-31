@@ -3,5 +3,7 @@ export class PedidoModel{
     idUsuario:string;
     fecha:Date;
     estado:string;
+    metodoPago:string;
+    numeroPedido:number;
 }
 

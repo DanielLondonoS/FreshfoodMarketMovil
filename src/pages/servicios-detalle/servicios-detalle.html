@@ -34,5 +34,5 @@
   </ion-card>
 </ion-content>
 <ion-footer>
-  <button type="tel:{{servicio.servicio.telefono}}" ion-button full outline class="boton-continuar" (click)="llamar(servicio.servicio.telefono)"> <ion-icon ios="ios-call" md="md-call" style="margin-right: 0.5em"></ion-icon>{{ servicio.servicio.telefono }}</button>
+  <button type="tel:{{servicio.servicio.telefono}}" ion-button full outline class="boton-continuar" (click)="llamar(servicio.servicio.telefono,servicio.servicio)"> <ion-icon ios="ios-call" md="md-call" style="margin-right: 0.5em"></ion-icon>{{ servicio.servicio.telefono }}</button>
 </ion-footer>

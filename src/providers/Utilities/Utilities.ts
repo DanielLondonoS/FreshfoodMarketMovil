@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { LoadingController, AlertController, ToastController } from 'ionic-angular';
+import { Vibration } from '@ionic-native/vibration';
 
 /*
   Generated class for the UtilitiesProvider provider.
@@ -16,7 +17,8 @@ export class UtilitiesProvider {
     public http: HttpClient,
     public loadingCtrl : LoadingController,
     public alertCtrl: AlertController,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public vibratioin: Vibration) {
     console.log('Hello UtilitiesProvider Provider');
   }
   /**
@@ -98,11 +100,17 @@ export class UtilitiesProvider {
         }
       }
     ) 
+
+    
     // let date :Date = new Date();
     // let date2:Date = new Date();
     // let hoy = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
     // let ayer = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()-1, date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
     // let manana = new Date(Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate()+1, date2.getHours(), date2.getMinutes(), date2.getSeconds(), date2.getMilliseconds()));
+  }
+
+  vibrarDispositivo(tiempo:any=1000){
+      this.vibratioin.vibrate(tiempo)
   }
 
 }

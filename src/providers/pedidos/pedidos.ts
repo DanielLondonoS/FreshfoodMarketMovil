@@ -40,7 +40,8 @@ export class PedidosProvider {
     _pedido['Id'] = pedido.id;
     _pedido['Estado'] = pedido.estado;
     _pedido['Fecha'] = pedido.fecha;
-    _pedido['IdUsuario'] = pedido.idUsuario;    
+    _pedido['IdUsuario'] = pedido.idUsuario;   
+    _pedido['MetodoPago'] = pedido.metodoPago;  
     pedidoDetalle.forEach(item => {
       _pedidoDetalle.push(
         {
@@ -61,8 +62,12 @@ export class PedidosProvider {
     let params = new HttpParams().set('pedidosApiModel',JSON.stringify({Pedido:pedido,PedidoDetalle:pedidoDetalle}))
     // let param = new HttpParams().set('Pedido',JSON.stringify(pedido)).set('PedidoDetalle',JSON.stringify(pedidoDetalle));
     // let param : any = dato;
-    return this.http.post(URL.Api+"/Pedidos/guardarpedido",{pedidosApiModel:{pedido:pedido,pedidoDetalle:pedidoDetalle}},{headers:{"Content-Type":"application/json"}}
-     )
+    return this.http.post(URL.Api+"/Pedidos/guardarpedido",{pedidosApiModel:{pedido:pedido,pedidoDetalle:pedidoDetalle}},{headers:{"Content-Type":"application/json"}})
+  }
+
+  ListaPedidosPorCliente(idCliente:string){
+    let headers = new HttpHeaders().set('Content-type','application/json');
+    return this.http.get(`${URL.Api}/Pedidos/listapedidocliente/?idCliente=${idCliente}`,{headers:headers});
   }
 
   

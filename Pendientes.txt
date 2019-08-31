@@ -1,0 +1,24 @@
+TareasFreshfoodMarket:{
+    Pendientes:{
+        0:{
+            tarea: Asignar forms validates en formulario de usuarios y registro,
+            estado: OK
+        },
+        1:{
+            tarea: Crear ventana para listar los pedidos realizados, esta debe permitir cancelar el pedido siempre y cuando
+                este no haya sido despachado, tambien debe permitir volver a realizar el pedido. Se visualizara un resumen 
+                en formas de tarjetas. Al seleccionar una de estas debe de permitir visualizar el detalle del pedido.
+            estado: OK
+        }
+    }    
+}
+
+pasos para la compilacion
+1: si no se ha generado una llave de firma se debe de generar, de lo contrario continuar con el paso 2
+    C:\Users\user\AppData\Local\Android\Sdk\build-tools\27.0.3\
+    keytool -genkey -v -keystore my-release-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+2: debemos de firmar la app con la llave que se genero en el paso 1, buscamos la siguiente ruta y copiamos lo siguiente
+    C:\Program Files (x86)\Java\jdk1.8.0_192\bin\jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore freshfoodmarket.keystore app-release-unsigned.apk freshfoodmarket
+    NOTA: la contraseña es: *FreshfoodM@rket2019.
+3: Una ves tengamos el archivo firmado nos dirigimos a ejecutar el siguiente comando:
+    C:\Users\user\AppData\Local\Android\Sdk\build-tools\27.0.3\zipalign -v 4 app-release-unsigned.apk freshfoodmarket.apk

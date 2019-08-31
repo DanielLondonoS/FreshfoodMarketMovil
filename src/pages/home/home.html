@@ -12,14 +12,41 @@
         </button>
     </ion-buttons>
   </ion-navbar>
-
+  <div padding>
+    <ion-segment [(ngModel)]="isHome">
+      <ion-segment-button value="productos">
+        Productos
+      </ion-segment-button>
+      <ion-segment-button value="marcas">
+        Marcas
+      </ion-segment-button>
+      <ion-segment-button value="categorias">
+        Categorias
+      </ion-segment-button>
+      <ion-segment-button value="servicios">
+        Servicios
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-header>
 <ion-content>
-  <!-- <div style="height: 100%; display: flex;">
-      <pedidos [usuario]="usuario" style="margin: auto auto;"></pedidos>
-  </div> -->
-  <publicidad></publicidad>
-  <productos-lista (ProductsClick)="onProductClick($event)" [ListaProductos]="ProductosLista"></productos-lista>
+  <div [ngSwitch]="isHome">
+    <div *ngSwitchCase="'productos'">     
+      <publicidad (publicidadClick)="onPublicidadClick($event)" [listSlides]="listPromotions"></publicidad>
+      <productos-lista (ProductsClick)="onProductClick($event)" [ListaProductos]="ProductosLista"></productos-lista>
+    </div>
+    <div *ngSwitchCase="'marcas'">
+      <marcas-slide></marcas-slide>
+    </div>
+    
+    <div *ngSwitchCase="'categorias'">
+      <categorias-slide></categorias-slide>
+    </div>
+
+    <div *ngSwitchCase="'servicios'">
+      <servicios-lista (ServicesClick)="onServiceClick($event)"> </servicios-lista>
+    </div>
+  </div>
 </ion-content>
 
 

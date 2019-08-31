@@ -65,10 +65,10 @@ export class LoginPage {
           //this.presentToast(result['mensaje'])
           this.utilitiesProvider.presentToast(result['mensaje']);
         }
-      },error =>{
-        console.log(error);
+      },error => {
         this.utilitiesProvider.closeLoading();
-        
+        console.error(error);
+        this.utilitiesProvider.presentAlert('Información','El servidor no responde o no se tiene una conexion a internet. Validelo y vuelva a intentarlo','Ok')
       })
     }
     
@@ -103,7 +103,9 @@ export class LoginPage {
                   // this.presentToast(res['mensaje']);
                   this.utilitiesProvider.presentToast(res['mensaje']);
                 },error => {
-                  console.log(error)
+                  this.utilitiesProvider.closeLoading();
+                  console.error(error);
+                  this.utilitiesProvider.presentAlert('Información','El servidor no responde o no se tiene una conexion a internet. Validelo y vuelva a intentarlo','Ok')
                 })
               }
             }
@@ -114,6 +116,9 @@ export class LoginPage {
       break;
       case 1:
         this.navCtrl.push(RegistroPage)
+      break;
+      case 2:
+        this.navCtrl.push(HomePage)
       break;
     }
     

@@ -7,6 +7,9 @@
 <ion-header>
 
   <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>Mis Datos</ion-title>
   </ion-navbar>
 
@@ -14,41 +17,52 @@
 
 
 <ion-content >
-  <div class="contenedor-formulario">
       <form [formGroup]="formRegistro" class="formulario">
-        <div>
-          <div class="formulario-grupo">
-            <label for="">Nombre</label>
-            <input class="formulario-entrada" formControlName="nombre" [(ngModel)]="datos.nombre" type="text">
-          </div>
+        <ion-item>
+          <ion-label stacked>Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text" [(ngModel)]="datos.nombre" value=""></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formRegistro.get('nombre').errors && formRegistro.get('nombre').dirty">
+          <p *ngIf="formRegistro.get('nombre').hasError('required')" style="color:red;">*El nombre es requerido</p> 
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Correo</ion-label>
+          <ion-input formControlName="correo" type="email" [(ngModel)]="datos.correo" value=""></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formRegistro.get('correo').errors && formRegistro.get('correo').dirty">
+          <p *ngIf="formRegistro.get('correo').hasError('required')" style="color:red;">*El correo es requerido</p>
+          <p *ngIf="formRegistro.get('correo').hasError('email')" style="color:red;">*Ingrese un correo valido</p>
+        </ion-item>
 
-          <div class="formulario-grupo">
-            <label for="">Correo</label>
-            <input class="formulario-entrada" formControlName="correo" [(ngModel)]="datos.correo" type="text">
-          </div>
+        <ion-item>
+          <ion-label stacked>Dirección</ion-label>
+          <ion-input formControlName="direccion" type="text" [(ngModel)]="datos.direccion" value=""></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formRegistro.get('direccion').errors && formRegistro.get('direccion').dirty">
+          <p *ngIf="formRegistro.get('direccion').hasError('required')" style="color:red;">*La dirección es requerida</p> 
+        </ion-item>  
 
-          <div class="formulario-grupo">
-            <label for="">Dirección</label>
-            <input class="formulario-entrada" formControlName="direccion" [(ngModel)]="datos.direccion" type="text">
-          </div>
+        <ion-item>
+          <ion-label stacked>Telefono</ion-label>
+          <ion-input formControlName="telefono" type="text" [(ngModel)]="datos.telefono" value=""></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formRegistro.get('telefono').errors && formRegistro.get('telefono').dirty">
+          <p *ngIf="formRegistro.get('telefono').hasError('required')" style="color:red;">*El telefono es requerido</p> 
+        </ion-item>   
 
-          <div class="formulario-grupo">
-            <label for="">Telefono</label>
-            <input class="formulario-entrada" formControlName="telefono" [(ngModel)]="datos.telefono" type="text">
-          </div>
-          <div class="formulario-grupo">
-            <label for="">Contraseña</label>
-            <input class="formulario-entrada" formControlName="contrasena" [(ngModel)]="datos.contrasena" type="password">
-          </div>
-
-        </div>
-
-          <div class="contenedor-boton">
-              <button ion-button outline class="boton-continuar" [disabled]="!formRegistro.valid" (click)="actualizarUsuario()">Actualizar</button>
-          </div>
+        <ion-item>
+          <ion-label stacked>Contraseña</ion-label>
+          <ion-input formControlName="contrasena" type="password" [(ngModel)]="datos.contrasena" value=""></ion-input>
+        </ion-item>
+        <ion-item *ngIf="formRegistro.get('contrasena').errors && formRegistro.get('contrasena').dirty">
+          <p *ngIf="formRegistro.get('contrasena').hasError('required')" style="color:red;">*La contraseña es requerida</p> 
+        </ion-item> 
           
-        </form>
-  </div>
+        <ion-item style="text-align: center">
+          <button ion-button [disabled]="!formRegistro.valid" (click)="actualizarUsuario()">Actualizar</button>
+        </ion-item> 
+      </form>
 
 </ion-content>
 

@@ -21,10 +21,10 @@
 //     background-position:cover;
 // }
 .content{
-    background-image:url('../assets/imgs/fondo.png') !important;
-    background-size:cover;
-    background-position:cover;
-    background-color: transparent;
+    // background-image:url('../assets/imgs/fondo.png') !important;
+    // background-size:cover;
+    // background-position:cover;
+    // background-color: transparent;
 }
 .toolbar-background {
     border-color: #9e4f9b;
@@ -38,6 +38,19 @@
 .item{
     background: transparent;
     background-color: transparent
+}
+
+.alert-md .alert-checkbox-label {
+    overflow: hidden ;
+    -webkit-box-flex: 1 ;
+    -webkit-flex: 1 ;
+    -ms-flex: 1 ;
+    flex: 1 ;
+    text-overflow: ellipsis ;
+    white-space: nowrap ;
+    color: initial ;
+    padding: 13px 26px ;
+    white-space: pre-wrap ;
 }
 // html{
 //     background:url('../assets/imgs/fondo.jpg');

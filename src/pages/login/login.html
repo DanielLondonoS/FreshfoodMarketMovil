@@ -15,9 +15,32 @@
 
 <ion-content>
   <div class="banner-imagen">
-    <img src="../../assets/imgs/logo-blanco.png" alt="">
+    <img src="./assets/imgs/logo-blanco.png" alt="">
   </div>
-  <div class="contenedor-formulario" >
+  <form [formGroup]="formLogin" class="formulario">
+    <ion-item>
+      <ion-label stacked>Nombre</ion-label>
+      <ion-input formControlName="correo" type="email" [(ngModel)]="cliente.correo" value=""></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formLogin.get('correo').errors && formLogin.get('correo').dirty">
+      <p *ngIf="formLogin.get('correo').hasError('required')" style="color:red;">*El correo es requerido</p> 
+      <p *ngIf="formLogin.get('correo').hasError('email')" style="color:red;">*Ingrese un correo valido</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Contraseña</ion-label>
+      <ion-input formControlName="contrasena" type="email" [(ngModel)]="cliente.contrasena" value=""></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formLogin.get('contrasena').errors && formLogin.get('contrasena').dirty">
+      <p *ngIf="formLogin.get('contrasena').hasError('required')" style="color:red;">*La contraseña es requerida</p> 
+    </ion-item>
+
+    <ion-item style="text-align: center;">
+        <button ion-button [disabled]="!formLogin.valid" (click)="LoginUsuario()">Continuar</button>
+    </ion-item>
+  </form>
+
+  <!-- <div class="contenedor-formulario" >
       <form [formGroup]="formLogin" class="formulario">
         <div>
           <div class="formulario-grupo">
@@ -40,10 +63,11 @@
         
         
 
-  </div>
+  </div> -->
   <div class="contenedor-registro">
       <a style="font-size: 1.2em; color:rgb(158, 79, 155)" (click)="goToPage(0)">Recuperar contraseña</a>
       <a style="font-size: 1.2em; color:rgb(158, 79, 155)" (click)="goToPage(1)">Registrate</a>
+      <a style="font-size: 1.2em; color:rgb(158, 79, 155)" (click)="goToPage(2)">Ir al Home</a>
   </div>
 
   

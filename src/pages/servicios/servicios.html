@@ -14,11 +14,5 @@
 
 
 <ion-content class="card-background-page">
-
-  <ion-card *ngFor="let item of servicios; let i = index;" (click)="servicioClick(item,i)">
-    <img [src]="item.servicio.imagenPrincipal"/>
-    <div class="card-title">{{item.servicio.nombre}}</div>
-    <div class="card-subtitle">{{item.servicio.telefono}}</div>
-  </ion-card>
-
+  <servicios-lista (ServicesClick)="onServiceClick($event)"> </servicios-lista>
 </ion-content>

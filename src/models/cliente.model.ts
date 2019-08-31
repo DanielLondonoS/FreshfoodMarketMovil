@@ -5,5 +5,6 @@ export class ClienteModel{
     direccion:string;
     telefono:string;
     contrasena:string;
+    confirmarContrasena?:string;
     uuid?:string;
 }

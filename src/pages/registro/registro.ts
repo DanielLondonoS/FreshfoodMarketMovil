@@ -6,7 +6,7 @@ import { ClienteModel } from '../../models/cliente.model';
 import { UtilitiesProvider } from '../../providers/Utilities/Utilities';
 import { LoginPage } from '../login/login';
 import { MisDatosProvider } from '../../providers/mis-datos/mis-datos';
-import { Uid } from '@ionic-native/uid';
+// import { Uid } from '@ionic-native/uid';
 
 /**
  * Generated class for the RegistroPage page.
@@ -22,18 +22,19 @@ import { Uid } from '@ionic-native/uid';
 })
 export class RegistroPage {
   formRegistro:FormGroup;
-  cliente:ClienteModel = {id:"",nombre:"",contrasena:"",correo:"",direccion:"",telefono:""};
+  cliente:ClienteModel = {id:"",nombre:"",contrasena:"",correo:"",direccion:"",telefono:"",confirmarContrasena:""};
   // cliente_online : any = JSON.parse(localStorage.getItem('usuario'))
   title:any = "Registro"
   constructor(public navCtrl: NavController, public navParams: NavParams,private fb:FormBuilder,
       private registroProvider:RegistroProvider,private utilitiesProvider:UtilitiesProvider,
-      private misDatosProvider:MisDatosProvider, private uid: Uid) {
+      private misDatosProvider:MisDatosProvider) {//, private uid: Uid
     this.formRegistro = this.fb.group({
       "nombre":['',[Validators.required]],
       "correo":['',[Validators.required,Validators.email]],
       "direccion":['',[Validators.required]],
       "telefono":['',[Validators.required]],
-      "contrasena":['',[Validators.required]]
+      "contrasena":['',[Validators.required]],
+      "confirmarContrasena":['',[Validators.required]]
     })
   }
 
@@ -49,39 +50,45 @@ export class RegistroPage {
 
   GuardarInformacion(){
     console.log(this.cliente)
-    this.utilitiesProvider.openLoading();
-    this.cliente.uuid = this.uid.UUID;
-    this.registroProvider.RegistroCliente(this.cliente)
-    .subscribe(resultado => {
-      console.log(resultado);
-      this.utilitiesProvider.closeLoading();
-      if(resultado['error'] == 0){
-        this.utilitiesProvider.presentToast(resultado['mensaje']);
-        // let usuario:any = {
-        //   id:"",
-        //   idUsuario:resultado['usuario']['id'],
-        //   uuid:this.uid.IMEI,
-        //   imei:this.uid.IMEI,
-        //   imsi:this.uid.IMSI,
-        //   iccid:this.uid.ICCID,
-        //   mac:this.uid.MAC
-        // }
-        // this.misDatosProvider.ActualizarUUId(usuario)
-        // .subscribe(resultado => {
-        //   console.log('dispositivo ok',resultado)
-        //   if(resultado['estado']){
+    if(this.cliente.contrasena === this.cliente.confirmarContrasena){
+      this.utilitiesProvider.openLoading();
+      //this.cliente.uuid = this.uid.UUID;
+      this.registroProvider.RegistroCliente(this.cliente)
+      .subscribe(resultado => {
+        console.log(resultado);
+        this.utilitiesProvider.closeLoading();
+        if(resultado['error'] == 0){
+          this.utilitiesProvider.presentToast(resultado['mensaje']);
+          // let usuario:any = {
+          //   id:"",
+          //   idUsuario:resultado['usuario']['id'],
+          //   uuid:this.uid.IMEI,
+          //   imei:this.uid.IMEI,
+          //   imsi:this.uid.IMSI,
+          //   iccid:this.uid.ICCID,
+          //   mac:this.uid.MAC
+          // }
+          // this.misDatosProvider.ActualizarUUId(usuario)
+          // .subscribe(resultado => {
+          //   console.log('dispositivo ok',resultado)
+          //   if(resultado['estado']){
 
-        //   }
-        // },error => console.log('dispositivo error'+error))
-        this.navCtrl.setRoot(LoginPage);
-      }else{
-        this.utilitiesProvider.presentToast(resultado['mensaje']);
-      }     
+          //   }
+          // },error => console.log('dispositivo error'+error))
+          this.navCtrl.setRoot(LoginPage);
+        }else{
+          this.utilitiesProvider.presentToast(resultado['mensaje']);
+        }     
 
-    },error => {
-      console.log(error);
-      this.utilitiesProvider.closeLoading();
-    })
+      },error => {
+        this.utilitiesProvider.closeLoading();
+        console.error(error);
+        this.utilitiesProvider.presentAlert('Información','El servidor no responde o no se tiene una conexion a internet. Validelo y vuelva a intentarlo','Ok')
+      })
+    }else{
+      this.utilitiesProvider.presentAlert('Información','Las contraseñas no coinciden','OK')
+    }
+    
   }
 
 }

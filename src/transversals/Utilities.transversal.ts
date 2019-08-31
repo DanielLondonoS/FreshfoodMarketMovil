@@ -46,5 +46,27 @@ export class UtilitiesTransversal{
         localStorage.removeItem("carrito");
     }
 
+    EliminarItemCarrito(producto){
+        let datosLocales:PedidoDetalleModel[] = JSON.parse(localStorage.getItem('carrito'));
+        if(datosLocales != undefined && datosLocales.length > 0){
+            let datos : any = datosLocales;
+            let item = datos.find(r=>r['idProducto'] == producto['pedido_detalle']['idProducto'])
+            
+            let respuesta = false
+            if(item != undefined){
+                let index = datos.indexOf(item);
+                if(index > -1){
+                    datosLocales.splice(index,1)
+                    respuesta = true;
+                    localStorage.setItem('carrito',JSON.stringify(datosLocales));
+                } 
+            }
+             
+            return respuesta;    
+        }else{
+            return false;
+        }
+    }
+
     
 }

@@ -14,24 +14,27 @@
 
 
 <ion-content >
-  <publicidad></publicidad>
-  <ion-grid style="height: 100%;">
+  <publicidad [listSlides]="listPromotions"></publicidad>
+  <ion-grid >
     <div style="display: block;text-align: center;margin-top: 3em;font-weight: bold;font-size: 1.5em;white-space: nowrap;" *ngIf="mensaje != '' ">{{mensaje}}</div>
     <ion-row *ngFor="let item of ListaCarrito;let i = index">
       <ion-col col-3>
         <ion-avatar item-start>
           <img *ngIf="item.producto.imagen != null" [src]="item.producto.imagen">
-          <img *ngIf="item.producto.imagen == null" src="../../assets/imgs/nofoto.png" >
+          <img *ngIf="item.producto.imagen == null" src="./assets/imgs/nofoto.png" >
         </ion-avatar>
       </ion-col>
       <ion-col col-9>
+        <div style="text-align: right;font-size: 1.5em; color: #9e4f9b">
+          <ion-icon ios="ios-trash" md="md-trash" (click)="deleteItem(item.producto,i)"></ion-icon>
+        </div>
           <div>
             <h5 style="white-space: normal; text-align: justify; font-weight: bold;margin:0;">{{item.producto.nombre}}</h5>
           </div>
           <div style="display:flex">
             <div class="boton-cantidades">
               <ion-icon  item-right class="plus-minus" name="remove-circle" color="danger"(click)="cantidad('dec',item.producto,i)"></ion-icon>
-              <ion-input style="text-align: center;width:80px" type="number" (blur)="quantityInput(item.producto,i)"  name="cantidad" [(ngModel)]="item.producto.pedido_detalle.cantidad"></ion-input>        
+              <ion-input style="text-align: center;width:80px" min="1" max="2500000" type="number" (blur)="quantityInput(item.producto,i)"  name="cantidad" [(ngModel)]="item.producto.pedido_detalle.cantidad"></ion-input>        
               <ion-icon  item-right class="plus-minus" name="add-circle" color="secondary" (click)="cantidad('inc',item.producto,i)"></ion-icon>  
             </div>
             <div style="width: 100%;">
@@ -40,40 +43,7 @@
           </div>
       </ion-col>
     </ion-row>
-
   </ion-grid>
-  
-  <!-- <ion-list>
-    <ion-item *ngFor="let item of ListaCarrito">
-      <ion-avatar item-start>
-        <img *ngIf="item.producto.imagen != null" [src]="item.producto.imagen">
-        <img *ngIf="item.producto.imagen == null" src="../../assets/imgs/nofoto.png" >
-      </ion-avatar>
-      <h2 style="white-space: normal; text-align: justify; font-weight: bold;">{{item.producto.nombre}}</h2>
-      <div style="display: block;">
-        <div style="display: flex">  
-          Cantidad: <p style="font-weight: bold; text-align: right; width: 100%;color:black"> {{item.producto.pedido_detalle.cantidad }}</p>
-        </div> 
-        <div style="display:flex">
-          Valor {{item.producto.presentacion}}: <p style="font-weight: bold; text-align: right; width: 100%;color:black"> {{item.producto.pedido_detalle.valorUnitario | currency}}</p>
-        </div>
-      </div>
-      
-    </ion-item>
-    <ion-item>
-      <div style="display:flex">
-        <strong>Domicilio:</strong><p style="text-align: right; width: 100%;"> $7.000</p>
-      </div>
-      <div style="display:flex">
-        <strong>Total Pedido:</strong><p style="text-align: right; width: 100%;"> {{totalPedido | currency}}</p>
-      </div>
-    </ion-item>
-    <ion-item>
-      <div style="display: flex">
-        <button style="margin:auto auto;background-color:rgb(158, 79, 155)" ion-button (click)="HacerPedido()">Hacer pedido</button>
-      </div>      
-    </ion-item>
-  </ion-list> -->
 </ion-content>
 <ion-footer>
   <div style="display: block; margin: 0px 0px; position: sticky; background: white; left: 0; bottom: 0; border: 1px solid rgb(153, 51, 153); width: 100%;">

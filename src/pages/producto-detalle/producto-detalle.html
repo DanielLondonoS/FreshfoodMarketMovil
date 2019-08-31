@@ -15,16 +15,19 @@
 
 <ion-content >
   <div padding>
-    <ion-slides pager>
+    <ion-slides pager *ngIf="imagenesProducto != []">
+      <ion-slide style="background-color: rgb(158, 79, 155)" *ngFor="let imagen of imagenesProducto">
+        <img  [src]="imagen.rutaImagen" alt="">      <!--*ngIf="producto.imagen != null"-->  
+      </ion-slide>    
+    </ion-slides>
 
+    <ion-slides pager *ngIf="imagenesProducto == []">
       <ion-slide style="background-color: rgb(158, 79, 155)">
-        <img *ngIf="producto.imagen != null" [src]="producto.imagen" alt="">
-        <img *ngIf="producto.imagen == null" src="../../assets/imgs/nofoto.png" alt="">
+        <img  src="./assets/imgs/nofoto.png" alt=""> <!--*ngIf="producto.imagen == null"-->
       </ion-slide>
-    
     </ion-slides>
   </div>
-  <div padding style="height:100%">
+  <div padding >
     <div style="display: flex; margin: 5px 0px;">
       <h3>{{producto.nombre}}</h3>
     </div>

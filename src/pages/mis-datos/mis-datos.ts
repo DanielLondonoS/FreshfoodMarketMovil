@@ -54,6 +54,10 @@ export class MisDatosPage {
       }else{
         this.utilitiesProvider.presentToast(resultado['mensaje']);
       }   
+    },error => {
+      this.utilitiesProvider.closeLoading();
+      console.error(error);
+      this.utilitiesProvider.presentAlert('Información','El servidor no responde o no se tiene una conexion a internet. Validelo y vuelva a intentarlo','Ok')
     })
   
   }

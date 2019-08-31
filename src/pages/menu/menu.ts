@@ -8,6 +8,8 @@ import { RegistroPage } from '../registro/registro';
 import { PedidosPage } from '../pedidos/pedidos';
 import { ServiciosPage } from '../servicios/servicios';
 import { MisDatosPage } from '../mis-datos/mis-datos';
+import { PedidosListaPage } from '../pedidos-lista/pedidos-lista';
+import { MisDatosPanelPage } from '../mis-datos-panel/mis-datos-panel';
 
 /**
  * Generated class for the MenuPage page.
@@ -25,8 +27,9 @@ export class MenuPage {
   usuario:ClienteModel;
   pages = [
     { title: 'Inicio', page: HomePage, icon: 'home' },
-    { title: 'Mis Datos', page: MisDatosPage, icon: 'contact' },
-    { title: 'Mi Pedido', page: PedidosPage, icon: 'cart' },
+    { title: 'Mis Datos', page: MisDatosPanelPage, icon: 'contact' },
+    { title: 'Mi Carrito', page: PedidosPage, icon: 'cart' },
+    { title: 'Mis Pedidos', page: PedidosListaPage, icon:'ios-basket'},
     { title: 'Servicios', page: ServiciosPage, icon: 'paw' }
   ];
 
@@ -43,7 +46,8 @@ export class MenuPage {
     if(this.usuario){
       this.openPage(HomePage)
     }else{
-      this.logout();
+      // this.logout();
+      this.navCtrl.setRoot(HomePage);
     }
     console.log('ionViewDidLoad MenuPage');
   }

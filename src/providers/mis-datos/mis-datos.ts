@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URL } from '../../constantes/constantes';
 /*
@@ -31,4 +31,33 @@ export class MisDatosProvider {
     return this.http.post(URL.Api+"/UsuarioDispositivo/actualizardispositivo",JSON.stringify(Uuid),{headers:{"Content-Type":"application/x-www-form-urlencoded"},params:Uuid})
   }
 
+  ListaDeMascotas(){
+    return this.http.get(URL.Api+"/Mascotas/listademascotas",{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  MascotasPorId(id : string){
+    return this.http.get(`${URL.Api}/Mascotas/mascotasporid?idMascota=${id}`,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  MascotasPorIdUsuario(id : string){
+    return this.http.get(`${URL.Api}/Mascotas/mascotasporidusuario?idUsuario=${id}`,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  ActualizarMascota(mascota : any){
+    let url:any = `${URL.Api}/Mascotas/actualizamascota`;
+    let header = new HttpHeaders().set('Content-type','Application/json')
+    return this.http.put(url,JSON.stringify(mascota),{headers:header});
+  }
+
+  CrearMascota(mascota:any){
+    let url:any = `${URL.Api}/Mascotas/crearmascota`;
+    let header = new HttpHeaders().set('Content-type','application/json')
+    return this.http.post(url,mascota,{headers:header});
+  }
+
+  EliminarMascota(mascota:any){
+    let url:any = `${URL.Api}/Mascotas/eliminarmascota`;
+    let header = new HttpHeaders().set('Content-type','application/json')
+    return this.http.post(url,mascota,{headers:header});
+  }
 }

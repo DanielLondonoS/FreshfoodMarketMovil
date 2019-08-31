@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { UtilitiesTransversal } from '../../transversals/Utilities.transversal';
 import { PedidoDetalleModel } from '../../models/pedidoDetalle.model';
 import { ProductoModel } from '../../models/producto.model';
+import { ProductosProvider } from '../../providers/productos/productos';
+import { UtilitiesProvider } from '../../providers/Utilities/Utilities';
 
 /**
  * Generated class for the ProductoDetallePage page.
@@ -17,34 +19,89 @@ import { ProductoModel } from '../../models/producto.model';
 })
 export class ProductoDetallePage {
   producto:ProductoModel;
+  imagenesProducto:any[] = [];
   cantidad:number = 1;
   utilidades = new UtilitiesTransversal();
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
-    this.producto = this.navParams.get('producto');
+  idProducto:any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController,
+    public productosProvider:ProductosProvider,public utilities:UtilitiesProvider) {
+    this.producto = this.navParams.get('producto') || [];
+    this.idProducto = this.navParams.get('id')
     console.log(this.producto)
-
-    if(this.producto['cantidad'] != 0){
-      this.cantidad = this.producto['cantidad'];
-    }
-    
-
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProductoDetallePage');
+    let producto:any = this.producto;
+    if(this.producto == undefined || this.producto == null || producto.length == 0){
+      this.cargarProducto();
+    }else{
+      if(this.producto['cantidad'] != 0){
+        this.cantidad = this.producto['cantidad'];
+      }
+      this.cargarImagenesProducto();
+    }
+    
+  }
+  
+  cargarProducto(){
+    this.utilities.openLoading();
+    this.productosProvider.productoPorId(this.idProducto)
+    .subscribe(res => {
+      this.utilities.closeLoading()
+      if(res['error'] == 0){
+        if(res['producto']){
+          this.producto = res['producto'];
+          if(this.producto['cantidad'] != 0){
+            this.cantidad = this.producto['cantidad'];
+          }
+          this.cargarImagenesProducto();
+        }
+      }
+    },error => {
+      this.utilities.closeLoading();
+      this.utilities.vibrarDispositivo();
+      this.utilities.presentToast('Ocurrio un problema.')
+    })
+  }
+
+  cargarImagenesProducto(){
+    this.utilities.openLoading();
+    this.productosProvider.imagenesPorProducto(this.producto.id)
+    .subscribe(res => {
+      this.utilities.closeLoading();
+
+      if(res['error'] == 0){
+        this.imagenesProducto = res['imagenes'];
+      }
+      
+      console.log(res);
+    },error => {
+      this.utilities.closeLoading();
+      this.utilities.vibrarDispositivo();
+      this.utilities.presentToast('Ocurrio un problema.')
+      console.log('error '+error)
+    })
   }
 
   addPedido(){
-    let pedidoDetalle : PedidoDetalleModel = new PedidoDetalleModel();
-    pedidoDetalle.id = "";
-    pedidoDetalle.idPedido = "";
-    pedidoDetalle.idProducto = this.producto.id;
-    let cant:any = this.cantidad
-    pedidoDetalle.cantidad = parseInt(cant);
-    pedidoDetalle.valorUnitario = this.producto.precioVenta;
-    pedidoDetalle.valorTotal = this.producto.precioVenta * cant;
-    this.utilidades.AgregarAlcarrito(pedidoDetalle,'input');
-    this.presentToast('Producto agregado.')
+    let cant:any = this.cantidad;
+    if(cant >= 1){
+      let pedidoDetalle : PedidoDetalleModel = new PedidoDetalleModel();
+      pedidoDetalle.id = "";
+      pedidoDetalle.idPedido = "";
+      pedidoDetalle.idProducto = this.producto.id;
+
+      pedidoDetalle.cantidad = parseInt(cant);
+      pedidoDetalle.valorUnitario = this.producto.precioVenta;
+      pedidoDetalle.valorTotal = this.producto.precioVenta * cant;
+      this.utilidades.AgregarAlcarrito(pedidoDetalle,'input');
+      this.presentToast('Producto agregado.')
+    }else{
+      this.presentToast('Valor no permitido');
+      return;
+    }
+    
 
   }
 
@@ -52,7 +109,7 @@ export class ProductoDetallePage {
    onCantidad(accion :string){
     switch(accion){
       case 'dec':
-        if(this.cantidad > 0){
+        if(this.cantidad > 1){
           this.cantidad = this.cantidad - 1;          
         }        
       break;

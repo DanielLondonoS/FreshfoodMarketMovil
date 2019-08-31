@@ -9,4 +9,6 @@ export class ProductoModel{
     imagen:string;
     disable_buy_button:boolean;
     cantidad:number;
+    notificarAntesAgregarCarrito:string;
+    mensajeNotificar:string;
 }

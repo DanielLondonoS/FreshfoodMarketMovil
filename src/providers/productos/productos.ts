@@ -21,4 +21,20 @@ export class ProductosProvider {
     return this.http.get(URL.Api+"/Productos/listadeproductos",{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
   }
 
+  productoPorId(IdProducto:any){
+    return this.http.get(URL.Api+"/Productos/productoporid?id="+IdProducto,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  imagenesPorProducto(IdProducto:string){
+    return this.http.get(URL.Api+"/Productos/imagenesproductos?idProducto="+IdProducto,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  productosPorIdMarca(Idmarca:string){
+    return this.http.get(URL.Api+"/Productos/listadeproductosidmarca?id="+Idmarca,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
+  productosPorIdCategoria(IdCategoria:string){
+    return this.http.get(URL.Api+"/Productos/listadeproductosidcategoria?id="+IdCategoria,{headers:{"Content-Type":"application/x-www-form-urlencoded"}})
+  }
+
 }
