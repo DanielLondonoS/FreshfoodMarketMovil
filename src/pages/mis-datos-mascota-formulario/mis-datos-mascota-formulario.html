@@ -33,7 +33,7 @@
       <ion-item>
         <ion-label stacked>Edad (meses)</ion-label>
         <!-- <ion-icon name="paw" left></ion-icon> -->
-        <ion-input formControlName="edad" type="numeric" [(ngModel)]="datos.edad"  (ngModelChange)="validarPorcion()"></ion-input>
+        <ion-input formControlName="edad" type="number" [(ngModel)]="datos.edad"  (ngModelChange)="validarPorcion()"></ion-input>
       </ion-item>
       <ion-item *ngIf="formularioMascota.get('edad').errors && formularioMascota.get('edad').dirty">
         <p *ngIf="formularioMascota.get('edad').hasError('required')" style="color:red;">*La edad es requerida</p> 
@@ -41,7 +41,7 @@
 
       <ion-item>
         <ion-label stacked>Peso (kg)</ion-label>
-        <ion-input formControlName="peso" type="decimal" [(ngModel)]="datos.peso"  (ngModelChange)="validarPorcion()"></ion-input>
+        <ion-input formControlName="peso" type="number" [(ngModel)]="datos.peso"  (ngModelChange)="validarPorcion()"></ion-input>
       </ion-item>
       <ion-item *ngIf="formularioMascota.get('peso').errors && formularioMascota.get('peso').dirty">
         <p *ngIf="formularioMascota.get('peso').hasError('required')" style="color:red;">*El peso es requerido</p> 
@@ -58,12 +58,13 @@
 
       <ion-item>
         <ion-label stacked>Porción Por Dia (kg) Aprox.</ion-label>
-        <ion-input formControlName="porcionDiaria" type="numeric" disabled="true" [(ngModel)]="datos.porcionDiaria" ></ion-input>
+        <ion-input formControlName="porcionDiaria" type="number" disabled="true" [(ngModel)]="datos.porcionDiaria" ></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label stacked>Fecha Ultima Desparacitada</ion-label>
-        <ion-input formControlName="fechaUltimaDesparacitada" type="date" [(ngModel)]="datos.fechaUltimaDesparacitada" ></ion-input>
+        <ion-datetime style="background: #9e4f9b; color: white;" formControlName="fechaUltimaDesparacitada" displayFormat="MM/DD/YYYY" [(ngModel)]="datos.fechaUltimaDesparacitada"></ion-datetime>
+        <!-- <ion-input formControlName="fechaUltimaDesparacitada" type="date" [(ngModel)]="datos.fechaUltimaDesparacitada" ></ion-input> -->
       </ion-item>
 
       <ion-item>

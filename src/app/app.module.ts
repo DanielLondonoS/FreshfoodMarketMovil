@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule, LOCALE_ID } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, ActionSheetController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -44,6 +44,11 @@ import { MisDatosPanelPageModule } from '../pages/mis-datos-panel/mis-datos-pane
 import { MisDatosMascotasPageModule } from '../pages/mis-datos-mascotas/mis-datos-mascotas.module';
 import { MisDatosMascotaFormularioPageModule } from '../pages/mis-datos-mascota-formulario/mis-datos-mascota-formulario.module';
 import { TransversalesProvider } from '../providers/transversales/transversales';
+
+import { Camera } from '@ionic-native/Camera';
+import { File } from '@ionic-native/File';
+// import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FilePath } from '@ionic-native/file-path';
 
 
 registerLocaleData(es);
@@ -99,7 +104,11 @@ registerLocaleData(es);
     CategoriasProvider,
     MarcasProvider,
     GestionAccionesProvider,
-    TransversalesProvider
+    TransversalesProvider,
+    Camera,
+    File,
+    FilePath,
+    ActionSheetController
 
   ]
 })

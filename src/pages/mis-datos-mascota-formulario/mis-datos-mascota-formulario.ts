@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, DateTime } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MisDatosProvider } from '../../providers/mis-datos/mis-datos';
 import { UtilitiesProvider } from '../../providers/Utilities/Utilities';
@@ -32,9 +32,11 @@ export class MisDatosMascotaFormularioPage {
         this.title = 'Crear Mascota';
       }else{
         this.title = 'Editar Mascota';
-        let datos = this.navParams.get('mascota');
-        console.log({datos:datos})
-        this.datos = datos;
+        let mascota = this.navParams.get('mascota');
+        mascota['fechaUltimaDesparacitada'] =new Date(mascota['fechaUltimaDesparacitada']).toISOString();
+        
+        console.log({datos:mascota})
+        this.datos = mascota;
       }
     }
     console.log({mascota:this.datos,parametroIn:this.parametroIn})
@@ -72,8 +74,15 @@ export class MisDatosMascotaFormularioPage {
           objeto['edad'] = this.datos['edad']
           objeto['peso'] = this.datos['peso']
           objeto['actividadFisica'] = this.datos['actividadFisica']
-          objeto['porcionDiaria'] = this.datos['porcionDiaria']
-          objeto['fechaUltimaDesparacitada'] = this.datos['fechaUltimaDesparacitada']
+          let porcion:any = this.datos['porcionDiaria']
+          if( porcion.indexOf(',') == -1 ){
+            objeto['porcionDiaria'] = porcion;
+          }else{
+            porcion.replace(',','.');
+            objeto['porcionDiaria'] = porcion;
+          }
+          
+          objeto['fechaUltimaDesparacitada'] = new Date(this.datos['fechaUltimaDesparacitada']);
           objeto['antecedentesMedicos'] = this.datos['antecedentesMedicos'] || null;
           this.misDatosProvider.CrearMascota(objeto)
           .subscribe(resultado=>{
@@ -134,7 +143,7 @@ export class MisDatosMascotaFormularioPage {
     if(this.datos['peso'] != null || this.datos['peso'] != undefined){
       if(this.datos['edad'] != null || this.datos['edad'] != undefined){
         if(this.datos['actividadFisica'] != null || this.datos['actividadFisica'] != undefined){
-          let peso :any = this.datos['peso'];
+          let peso :any = parseFloat(this.datos['peso']);
           let edad :any = this.datos['edad'];
           let actividadFisica :any = this.datos['actividadFisica'] ;
           let porcentaje:any =0;
@@ -183,7 +192,7 @@ export class MisDatosMascotaFormularioPage {
               }
             break;
           }
-          porcion = (parseFloat(peso) * parseFloat(porcentaje)).toLocaleString('es')
+          porcion = (parseFloat(peso) * parseFloat(porcentaje)).toFixed(2);
           console.log({
             peso:peso,
             edad:edad,
@@ -193,7 +202,7 @@ export class MisDatosMascotaFormularioPage {
           })
           
 
-          this.datos['porcionDiaria'] = porcion;
+          this.datos['porcionDiaria'] = parseFloat(porcion).toFixed(2);
         }
       }
     }

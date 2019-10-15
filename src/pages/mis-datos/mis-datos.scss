@@ -40,7 +40,7 @@ page-mis-datos {
         //     display: flex;
         // }
         // .boton-continuar{
-        //     // background-image: url(../../assets/imgs/pawprint.png) !important;
+        //     // background-image: url(../../assets/imgs/pawprint.png) ;
         //     // background-size: 150px;
         //     // width: 150px;
         //     // height: 150px;
@@ -51,37 +51,37 @@ page-mis-datos {
         //     border: 1px solid rgba(153, 51, 153,85);;
         // }
         .item-input ion-input, .item-input ion-textarea {
-            position: static;
-            background: #9e4f9b94;
-            color:white;
+            position: static ;
+            background: #9e4f9b ;
+            color:white ;
         }
     
         .item-label-stacked .select-md, .item-label-floating .select-md {
-            padding-left: 0;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            background: #9e4f9b94;
-            color: white;
+            padding-left: 0 ;
+            padding-top: 8px ;
+            padding-bottom: 8px ;
+            background: 9e4f9b ;
+            color: white ;
         }
     
         .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-            border-bottom-color: #9e4f9b;
-            -webkit-box-shadow: inset 0 -1px 0 0 #9e4f9b;
-            box-shadow: inset 0 -1px 0 0 #9e4f9b;
+            border-bottom-color: #9e4f9b ;
+            -webkit-box-shadow: inset 0 -1px 0 0 #9e4f9b ;
+            box-shadow: inset 0 -1px 0 0 #9e4f9b ;
         }
         //IOS
         .item-label-stacked .select-ios, .item-label-floating .select-ios {
-            padding-left: 0;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            background: #9e4f9b94;
-            color: white;
+            padding-left: 0 ;
+            padding-top: 8px ;
+            padding-bottom: 8px ;
+            background: #9e4f9b ;
+            color: white ;
         }
     
         .item-ios.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner, .item-ios.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
-            border-bottom-color: #9e4f9b;
-            -webkit-box-shadow: inset 0 -1px 0 0 #9e4f9b;
-            box-shadow: inset 0 -1px 0 0 #9e4f9b;
+            border-bottom-color: #9e4f9b ;
+            -webkit-box-shadow: inset 0 -1px 0 0 #9e4f9b ;
+            box-shadow: inset 0 -1px 0 0 #9e4f9b ;
         }
     
 }

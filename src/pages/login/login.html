@@ -29,7 +29,7 @@
 
     <ion-item>
       <ion-label stacked>Contraseña</ion-label>
-      <ion-input formControlName="contrasena" type="email" [(ngModel)]="cliente.contrasena" value=""></ion-input>
+      <ion-input formControlName="contrasena" type="password" [(ngModel)]="cliente.contrasena" value=""></ion-input>
     </ion-item>
     <ion-item *ngIf="formLogin.get('contrasena').errors && formLogin.get('contrasena').dirty">
       <p *ngIf="formLogin.get('contrasena').hasError('required')" style="color:red;">*La contraseña es requerida</p> 

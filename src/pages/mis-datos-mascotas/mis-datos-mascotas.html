@@ -24,11 +24,11 @@
     <h1>No se encontraron mascotas registradas</h1>
   </div>
   <ion-list *ngIf="listaMascotas.length > 0">
-    <ion-item-sliding *ngFor="let mascota of listaMascotas">
+    <ion-item-sliding *ngFor="let mascota of listaMascotas;let i=index">
       <ion-item>
-        <ion-thumbnail item-start>
-          <img src="img/thumbnail-totoro.png">
-        </ion-thumbnail>
+        <!-- <ion-thumbnail item-start (click)="selectImage(i)">
+          <img [src]="foto || avatarMascota">
+        </ion-thumbnail> -->
         <h2>{{mascota.nombre}}</h2>
         <p>Edad: {{mascota.edad}} meses</p>
         <p>Peso: {{mascota.peso}} Kilos</p>
