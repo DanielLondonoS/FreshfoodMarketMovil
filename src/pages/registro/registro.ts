@@ -6,6 +6,7 @@ import { ClienteModel } from '../../models/cliente.model';
 import { UtilitiesProvider } from '../../providers/Utilities/Utilities';
 import { LoginPage } from '../login/login';
 import { MisDatosProvider } from '../../providers/mis-datos/mis-datos';
+import { Uid } from '@ionic-native/uid';
 // import { Uid } from '@ionic-native/uid';
 
 /**
@@ -27,7 +28,7 @@ export class RegistroPage {
   title:any = "Registro"
   constructor(public navCtrl: NavController, public navParams: NavParams,private fb:FormBuilder,
       private registroProvider:RegistroProvider,private utilitiesProvider:UtilitiesProvider,
-      private misDatosProvider:MisDatosProvider) {//, private uid: Uid
+      private misDatosProvider:MisDatosProvider, private uid: Uid) {//, private uid: Uid
     this.formRegistro = this.fb.group({
       "nombre":['',[Validators.required]],
       "correo":['',[Validators.required,Validators.email]],
@@ -52,7 +53,7 @@ export class RegistroPage {
     console.log(this.cliente)
     if(this.cliente.contrasena === this.cliente.confirmarContrasena){
       this.utilitiesProvider.openLoading();
-      //this.cliente.uuid = this.uid.UUID;
+      this.cliente.uuid = (this.uid.UUID == null || this.uid.UUID == undefined) ? 'N/A': this.uid.UUID;
       this.registroProvider.RegistroCliente(this.cliente)
       .subscribe(resultado => {
         console.log(resultado);

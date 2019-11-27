@@ -82,7 +82,7 @@ export class MisDatosMascotaFormularioPage {
             objeto['porcionDiaria'] = porcion;
           }
           
-          objeto['fechaUltimaDesparacitada'] = new Date(this.datos['fechaUltimaDesparacitada']);
+          objeto['fechaUltimaDesparacitada'] = this.utilitiesProvider.formatoFechas(new Date(this.datos['fechaUltimaDesparacitada']))['yyyy-mm-dd'];
           objeto['antecedentesMedicos'] = this.datos['antecedentesMedicos'] || null;
           this.misDatosProvider.CrearMascota(objeto)
           .subscribe(resultado=>{

@@ -17,7 +17,11 @@ export class RegistroProvider {
   }
 
   RegistroCliente(cliente:any){
-    return this.http.post(URL.Api+"/Usuarios/AgregarUsuario",JSON.stringify(cliente),{headers:{"Content-Type":"application/x-www-form-urlencoded"},params:cliente})
+    return this.http.post(URL.Api+"/Usuarios/AgregarUsuario",JSON.stringify(cliente),{
+      headers:{
+      "Content-Type":"application/json"
+      },params:cliente
+    })
   }
 
   LoginUsuario(cliente:LoginModel){

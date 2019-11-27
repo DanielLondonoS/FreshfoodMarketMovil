@@ -113,4 +113,41 @@ export class UtilitiesProvider {
       this.vibratioin.vibrate(tiempo)
   }
 
+  formatoFechas(fecha:Date):any{
+    let _fecha = new Date();
+    let _fecha_ = new Date(_fecha);
+    let _fechai = new Date().toLocaleString('es-CO')
+    let _fechai_ = new Date(_fechai).toLocaleString('es-CO')
+    let f = "08/04/2017";
+    let ff = '2017-04-08'
+    let _fechaf = new Date(f);
+    let _fecha_ff = new Date(ff);
+    let _fechaif = new Date(_fechaf).toLocaleString('es-CO')
+    let _fechai_ff = new Date(_fecha_ff).toLocaleString('es-CO')
+    
+    let strfecha :string = fecha.toLocaleString('es-CO');
+    let dia:any = fecha.getDate();
+    let mes:any = fecha.getMonth();
+    let ano:any = fecha.getFullYear();
+    mes = (parseInt(mes)+1);
+    dia = dia < 10 ? `0${dia}` : dia;
+    mes = mes < 10 ? `0${mes}` : mes;
+    console.log(strfecha)
+    let resultado : any = {
+      'dd-mm-yyyy':`${dia}-${mes}-${ano}`,
+      'dd/mm/yyyy':`${dia}/${mes}/${ano}`,
+      'mm-dd-yyyy':`${mes}-${dia}-${ano}`,
+      'mm/dd/yyyy':`${mes}/${dia}/${ano}`,
+      'yyyy-mm-dd':`${ano}-${mes}-${dia}`,
+      'yyyy/mm/dd':`${ano}/${mes}/${dia}`,
+      'strFecha':strfecha,
+      'dd':dia,
+      'mm':mes,
+      'yyyy':ano,
+      'fecha'     :fecha
+      
+    }
+
+    return resultado;
+  }
 }

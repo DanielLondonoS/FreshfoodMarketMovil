@@ -30,6 +30,7 @@
   </div>
 </ion-header>
 <ion-content>
+  
   <div [ngSwitch]="isHome">
     <div *ngSwitchCase="'productos'">     
       <publicidad (publicidadClick)="onPublicidadClick($event)" [listSlides]="listPromotions"></publicidad>
@@ -47,6 +48,7 @@
       <servicios-lista (ServicesClick)="onServiceClick($event)"> </servicios-lista>
     </div>
   </div>
+
 </ion-content>
 
 
