@@ -37,6 +37,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { CallNumber } from '@ionic-native/call-number';
 import { OneSignal } from '@ionic-native/onesignal';
 import { Vibration } from '@ionic-native/vibration';
+import { AppVersion } from '@ionic-native/app-version';
 import { CategoriasProvider } from '../providers/categorias/categorias';
 import { MarcasProvider } from '../providers/marcas/marcas';
 import { GestionAccionesProvider } from '../providers/gestion-acciones/gestion-acciones';
@@ -108,7 +109,8 @@ registerLocaleData(es);
     Camera,
     File,
     FilePath,
-    ActionSheetController
+    ActionSheetController,
+    AppVersion
 
   ]
 })

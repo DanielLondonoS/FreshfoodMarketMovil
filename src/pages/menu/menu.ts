@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, App, Platform } from 'ionic-angular';
 import { RegistroProvider } from '../../providers/registro/registro';
 import { ClienteModel } from '../../models/cliente.model';
 import { HomePage } from '../home/home';
@@ -10,6 +10,7 @@ import { ServiciosPage } from '../servicios/servicios';
 import { MisDatosPage } from '../mis-datos/mis-datos';
 import { PedidosListaPage } from '../pedidos-lista/pedidos-lista';
 import { MisDatosPanelPage } from '../mis-datos-panel/mis-datos-panel';
+import { AppVersion } from '@ionic-native/app-version';
 
 /**
  * Generated class for the MenuPage page.
@@ -32,13 +33,23 @@ export class MenuPage {
     { title: 'Mis Pedidos', page: PedidosListaPage, icon:'ios-basket'},
     { title: 'Servicios', page: ServiciosPage, icon: 'paw' }
   ];
+  versionApp:any;
 
   @ViewChild(Nav) nav : Nav;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private appCtrl :App) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private appCtrl :App,private appVersion: AppVersion,public platform: Platform) {
     this.usuario = navParams.get('usuario');
     if(!this.usuario){
       this.usuario = JSON.parse(localStorage.getItem('usuario'));
     }
+    platform.ready().then(() => {
+      // Okay, so the platform is ready and our plugins are available.
+      // Here you can do any higher level native things you might need.
+
+      this.appVersion.getVersionNumber().then(res => {
+        this.versionApp = res;
+      });
+    });
   }
 
   ionViewWillEnter() {
@@ -66,4 +77,7 @@ export class MenuPage {
     this.appCtrl.getRootNav().setRoot(LoginPage)
   }
 
+  openIdeaCreativa(){
+    window.open('https://ideacreativasp.com','_system','location=yes');
+  }
 }

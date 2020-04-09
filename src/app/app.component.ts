@@ -46,19 +46,19 @@ export class MyApp {
       // ok, a user gave us permission, we can get him identifiers after restart app
       return;
     }
-    // let usuario:any = {
-    //   id:"",
-    //   idUsuario:"",
-    //   uuid:this.uid.IMEI,
-    //   imei:this.uid.IMEI,
-    //   imsi:this.uid.IMSI,
-    //   iccid:this.uid.ICCID,
-    //   mac:this.uid.MAC
-    // }
-    // this.misDatosProvider.guardarUUId(usuario)
-    // .subscribe(resultado => {
-    //   console.log('dispositivo ok',resultado)
-    // },error => {console.log('dispositivo error'+error)})
+    let usuario:any = {
+      id:"",
+      idUsuario:"",
+      uuid:this.uid.IMEI,
+      imei:this.uid.IMEI,
+      imsi:this.uid.IMSI,
+      iccid:this.uid.ICCID,
+      mac:this.uid.MAC
+    }
+    this.misDatosProvider.guardarUUId(usuario)
+    .subscribe(resultado => {
+      console.log('dispositivo ok',resultado)
+    },error => {console.log('dispositivo error'+error)})
 
      return true
    }

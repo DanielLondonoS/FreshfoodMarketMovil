@@ -147,7 +147,7 @@ export class PedidosPage {
           
         })
         if(this.totalPedido > 0){
-          this.totalPedido += 7000;
+          this.totalPedido += 8000;
         }
         this.ListaCarrito = listaCarrito;
         console.log(listaCarrito);
@@ -172,7 +172,7 @@ export class PedidosPage {
             }            
           })
           if(this.totalPedido > 0){
-            this.totalPedido = this.totalPedido + 7000;
+            this.totalPedido = this.totalPedido + 8000;
           }
           this.ListaCarrito = listaCarrito;
           console.log(listaCarrito);          
