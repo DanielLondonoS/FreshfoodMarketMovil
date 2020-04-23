@@ -22,3 +22,6 @@ pasos para la compilacion
     NOTA: la contraseña es: *FreshfoodM@rket2019.
 3: Una ves tengamos el archivo firmado nos dirigimos a ejecutar el siguiente comando:
     C:\Users\user\AppData\Local\Android\Sdk\build-tools\27.0.3\zipalign -v 4 app-release-unsigned.apk freshfoodmarket.apk
+
+
+    
